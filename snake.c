@@ -65,7 +65,7 @@ int move_snake(POS* SNAKE_MAP, vec2 vec, vec2* head_pos, int* SNAKE_LENGTH) {
     }
 
     for (int i = 0; i < TILE_COUNT; i++) {
-        if (SNAKE_MAP[i].x == head_pos->x + vec.x && SNAKE_MAP[i].y == head_pos->y + vec.y) {
+        if (SNAKE_MAP[i].x==head_pos->x+vec.x&&SNAKE_MAP[i].y==head_pos->y+vec.y) {
             if (SNAKE_MAP[i].ENABLED == 1) {
                 return -1;
             } else {
@@ -83,6 +83,6 @@ int move_snake(POS* SNAKE_MAP, vec2 vec, vec2* head_pos, int* SNAKE_LENGTH) {
 vec2 spawn_orb(POS* SNAKE_MAP) {  
     for (int i = 0; i < TILE_COUNT; i++) {
         if (rand() < 0.2 && SNAKE_MAP[i].ENABLED == 0)
-            return (vec2) {roundf(10 * SNAKE_MAP[i].x) / 10, roundf(10 * SNAKE_MAP[i].x) / 10};
+            return (vec2) {roundf(10 * SNAKE_MAP[i].x)/10, roundf(10 * SNAKE_MAP[i].x)/10};
     }
 }
