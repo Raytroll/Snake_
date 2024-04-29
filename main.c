@@ -10,7 +10,7 @@
 #include <math.h>
 
 int main(int argc, char *argv[]) {
-    POS* SNAKE_PATH = init_snake_path();
+    POS* MAP = init_MAP();
     int* SNAKE_LENGTH = 3;
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) 
         printf("error initializing SDL: %s\n", SDL_GetError());
@@ -21,13 +21,13 @@ int main(int argc, char *argv[]) {
     int* running = 1;
     vec2 SNAKE_POS = {.x = SCREEN_WIDTH/2, .y = SCREEN_HEIGHT / 2};
     vec2 SNAKE_VEL = {.x = 10, .y = 0};
-    update_tile(SNAKE_PATH, SNAKE_POS);
-    vec2 ORB_POS = spawn_orb(SNAKE_PATH);
+    update_tile(MAP, SNAKE_POS);
+    vec2 ORB_POS = spawn_orb(MAP);
     while (running == 1) {
         SDL_RenderClear(rend);
         handle_events(&running, &SNAKE_VEL);
-        draw_tiles(SNAKE_PATH, rend);
-        int _ = move_snake(SNAKE_PATH, (vec2) {SNAKE_VEL.x, SNAKE_VEL.y}, &SNAKE_POS, &SNAKE_LENGTH);
+        draw_tiles(MAP, rend);
+        int _=move_snake(MAP, (vec2){SNAKE_VEL.x,SNAKE_VEL.y},&SNAKE_POS,&SNAKE_LENGTH);
         if (_ != 1) return 0;
         SDL_Rect rect = {ORB_POS.x, ORB_POS.y, 10, 10};
         SDL_SetRenderDrawColor(rend, 255, 0, 0, 255);
